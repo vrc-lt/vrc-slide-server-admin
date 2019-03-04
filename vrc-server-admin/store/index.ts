@@ -1,11 +1,11 @@
 import { RootState, Person, VRCSlideEvent } from "~/types";
 import { MutationTree, ActionTree } from "vuex";
 import axios from "~/plugins/axios";
-import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from "constants";
 
 export const state = (): RootState => ({
   people: [],
   events: [],
+  currentEvent: {id: 0, slides: [], name: ""},
   authUser: { session: "" }
 })
 
@@ -15,6 +15,9 @@ export const mutations: MutationTree<RootState> = {
   },
   setEvents(state: RootState, events: VRCSlideEvent[]): void {
     state.events = events
+  },
+  setEvent(state: RootState, event: VRCSlideEvent): void {
+    state.currentEvent = event
   },
   setUser(state: RootState, user: any): void {
     if(user){
@@ -51,5 +54,15 @@ export const actions: ActionTree<RootState, RootState> = {
     const events: VRCSlideEvent[] = res.data
     
     commit("setEvents", events)
+  },
+
+  async fetchSingleEvent({ commit }, { id }) {
+    
+    const res = await axios.get(
+      "./api/events/" + id, {withCredentials: true}
+    )
+    const event: VRCSlideEvent = res.data
+    
+    commit("setEvent", event)
   }
 }

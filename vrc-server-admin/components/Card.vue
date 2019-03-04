@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h2> {{ event.name }} </h2>
+    <h2> <nuxt-link :to="'/event/'+ event.name"> {{ event.name }} </nuxt-link> </h2>
     <div v-for="(slide, index) in event.slides"
         :key="index"
         :slide="slide"> {{ slide.sdid }}, {{ slide.count }}  </div>
