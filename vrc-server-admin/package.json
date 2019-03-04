@@ -9,10 +9,10 @@
     "vuex-class": "0.3.1"
   },
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "dev": "nuxt --spa",
+    "build": "nuxt build --spa",
+    "start": "nuxt start --spa",
+    "generate": "nuxt generate --spa"
   },
   "devDependencies": {
     "ts-loader": "5.3.3",

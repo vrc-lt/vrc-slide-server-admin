@@ -26,6 +26,9 @@ import Card from "~/components/Card.vue"
   }
 })
 export default class extends Vue {
+  async fetch ({ store, params }) {
+    await store.dispatch('fetchEvents');
+  }
   @State events : VRCSlideEvent[]
 }
 </script>

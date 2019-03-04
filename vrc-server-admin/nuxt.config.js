@@ -13,7 +13,7 @@ const port =
   argv.port ||
   process.env.PORT ||
   process.env.npm_package_config_nuxt_port ||
-  "3000"
+  "8080"
 const host =
   argv.hostname ||
   process.env.HOST ||

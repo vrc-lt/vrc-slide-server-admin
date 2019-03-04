@@ -11,6 +11,10 @@ export interface Person {
   address: Address;
 }
 
+export interface AuthUser{
+  session: String;
+}
+
 export interface Slide {
   sdid: string;
   count: number;
