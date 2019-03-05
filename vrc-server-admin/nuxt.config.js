@@ -57,7 +57,11 @@ export default {
   ** Build configuration
   */
   css: ["~/assets/css/main.css"],
-  build: {},
+  build: {
+    vendor:[
+      'vuex'
+    ]
+  },
   modules: [
     "@nuxtjs/axios",
     "~/modules/typescript.js"

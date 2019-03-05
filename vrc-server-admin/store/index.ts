@@ -1,5 +1,5 @@
 import { RootState, Person, VRCSlideEvent } from "~/types";
-import { MutationTree, ActionTree } from "vuex";
+import { MutationTree, ActionTree, StoreOptions } from "vuex";
 import axios from "~/plugins/axios";
 
 export const state = (): RootState => ({
@@ -25,6 +25,23 @@ export const mutations: MutationTree<RootState> = {
     }else{
       state.authUser = { session: "" }
     }
+  },
+  add (state, text) {
+    state.currentEvent.slides.push({
+      sdid: text,
+      count: 0,
+    })
+  },
+  remove (state, { slide }) {
+    state.currentEvent.slides.splice(state.currentEvent.slides.indexOf(slide), 1)
+  },
+  changeSdid (state, {sdid, slide, index}) {
+    slide.sdid = sdid
+    state.currentEvent[index] = slide
+  },
+  changeCount(state, {count, slide, index}) {
+    slide.count = count
+    state.currentEvent[index] = slide
   }
 }
 
@@ -64,5 +81,13 @@ export const actions: ActionTree<RootState, RootState> = {
     const event: VRCSlideEvent = res.data
     
     commit("setEvent", event)
+  },
+/* 
+  async submitEvent({commit}, {event}){
+
+    const res = await axios.post(
+      "./api/events/" + event.name + "/update", {withCredentials: true}
+    )
   }
+     */
 }
