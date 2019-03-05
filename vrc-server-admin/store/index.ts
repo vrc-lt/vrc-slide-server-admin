@@ -37,11 +37,9 @@ export const mutations: MutationTree<RootState> = {
   },
   changeSdid (state, {sdid, slide, index}) {
     slide.sdid = sdid
-    state.currentEvent[index] = slide
   },
   changeCount(state, {count, slide, index}) {
-    slide.count = count
-    state.currentEvent[index] = slide
+    slide.count = parseInt(count, 10)
   }
 }
 
@@ -82,12 +80,10 @@ export const actions: ActionTree<RootState, RootState> = {
     
     commit("setEvent", event)
   },
-/* 
-  async submitEvent({commit}, {event}){
+  async submitEvent({commit}, {}){
 
     const res = await axios.post(
-      "./api/events/" + event.name + "/update", {withCredentials: true}
+      "./api/events/" + this.state.currentEvent.name + "/update", this.state.currentEvent, {withCredentials: true}
     )
   }
-     */
 }
