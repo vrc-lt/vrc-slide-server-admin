@@ -81,7 +81,6 @@ export const actions: ActionTree<RootState, RootState> = {
     commit("setEvent", event)
   },
   async submitEvent({commit}, {}){
-
     const res = await axios.post(
       "./api/events/" + this.state.currentEvent.name + "/update", this.state.currentEvent, {withCredentials: true}
     )
