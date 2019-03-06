@@ -5,6 +5,7 @@
     <li v-for="(slide, index) in currentEvent.slides"
     :key="index"
     :slide="slide"> 
+      <img class="slide-preview" :src="slideTitlePageUrl(slide)">
       <input type="textbox" :value="slide.sdid" @input="sdidChanged($event.target.value, slide, index)">
       <input type="number" :value="slide.count" @input="countChanged($event.target.value, slide, index)">
       <button @click="removeSlide(slide, index)">remove</button>
@@ -32,6 +33,9 @@ import { mapMutations } from 'vuex';
 @Component
 export default class extends Vue {
 
+    slideTitlePageUrl(slide: Slide): String{
+      return "https://speakerd.s3.amazonaws.com/presentations/"+ slide.sdid +"/preview_slide_0.jpg?373063"
+    }
     //slides(): Slide[] { return this.$store.state.slides.state.slides; }
 
     removeSlide(slide: Slide, index){
@@ -70,5 +74,10 @@ export default class extends Vue {
 .cards {
   display: flex;
   flex-wrap: wrap;
+}
+
+.slide-preview{
+  max-width: 80pt;
+  max-height: 80pt;
 }
 </style>
