@@ -57,6 +57,13 @@ export default {
   ** Build configuration
   */
   css: ["~/assets/css/main.css"],
+  postcss: {
+    plugins: {
+      'postcss-custom-properties': {
+        warnings: false
+      }
+    }
+  },
   build: {
     vendor:[
       'vuex'
@@ -64,7 +71,9 @@ export default {
   },
   modules: [
     "@nuxtjs/axios",
-    "~/modules/typescript.js"
+    "~/modules/typescript.js",
+    "@nuxtjs/bulma",
+    "@nuxtjs/font-awesome"
   ],
   axios: {}
 }

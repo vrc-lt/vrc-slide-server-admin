@@ -1,19 +1,24 @@
 <template>
   <section class="event">
       {{$route.params.id}}
-    <ul>
-    <li v-for="(slide, index) in currentEvent.slides"
+    <div class="tile" v-for="(slide, index) in currentEvent.slides"
     :key="index"
     :slide="slide"> 
       <img class="slide-preview" :src="slideTitlePageUrl(slide)">
-      <input type="textbox" :value="slide.sdid" @input="sdidChanged($event.target.value, slide, index)">
-      <input type="number" :value="slide.count" @input="countChanged($event.target.value, slide, index)">
-      <button @click="removeSlide(slide, index)">remove</button>
-    </li>
-    <li><input placeholder="add slide" @keyup.enter="addSlide">
-    </li>
-  </ul>
-      <button @click="submit">save</button>
+      <p>
+      <label class="label">Slide ID</label>
+      <input class="input" type="textbox" :value="slide.sdid" @input="sdidChanged($event.target.value, slide, index)">
+      </p>
+      <p>
+      <label class="label">Slide count</label>
+      <input class="input" type="number" :value="slide.count" @input="countChanged($event.target.value, slide, index)">
+      </p>
+      <a class="button is-danger remove-button" @click="removeSlide(slide, index)">remove</a>
+    </div>
+    <div class="tile">
+      <input class="input" placeholder="add slide" @keyup.enter="addSlide">
+    </div>
+    <a @click="submit" class="button-submit button is-primary">Save</a>
   </section>
 </template>
 
@@ -79,5 +84,11 @@ export default class extends Vue {
 .slide-preview{
   max-width: 80pt;
   max-height: 80pt;
+}
+.remove-button{
+  margin: auto auto auto 8px;
+}
+.button-submit{
+  margin-right: 8px;
 }
 </style>
