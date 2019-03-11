@@ -101,5 +101,6 @@ export const actions: ActionTree<RootState, RootState> = {
     const res = await axios.post(
       "./api/events/" + this.state.currentEvent.name + "/update", this.state.currentEvent, {withCredentials: true}
     )
+    this.$router.push("/")
   }
 }
