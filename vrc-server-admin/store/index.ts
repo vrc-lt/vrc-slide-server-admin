@@ -33,8 +33,8 @@ export const mutations: MutationTree<RootState> = {
       count: 0,
     })
   },
-  remove (state, { slide }) {
-    state.currentEvent.slides.splice(state.currentEvent.slides.indexOf(slide), 1)
+  remove (state, { slide, index }) {
+    state.currentEvent.slides.splice(index, 1)
   },
   changeSdid (state, {sdid, slide, index}) {
     slide.sdid = sdid

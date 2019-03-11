@@ -46,7 +46,7 @@ export default class extends Vue {
     //slides(): Slide[] { return this.$store.state.slides.state.slides; }
 
     removeSlide(slide: Slide, index){
-        this.$store.commit('remove', slide );
+        this.$store.commit('remove', {slide, index} );
     }
 
     addSlide(e){
