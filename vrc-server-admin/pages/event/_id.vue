@@ -14,6 +14,8 @@
       <input class="input" type="number" :value="slide.count" @input="countChanged($event.target.value, slide, index)">
       </p>
       <a class="button is-danger remove-button" @click="removeSlide(slide, index)">remove</a>
+      <a class="button" @click="moveSlideUpward(slide, index)">up</a>
+      <a class="button" @click="moveSlideDownward(slide, index)">down</a>
     </div>
     <div class="tile">
       <input class="input" placeholder="add slide" @keyup.enter="addSlide">
@@ -58,6 +60,14 @@ export default class extends Vue {
 
     sdidChanged(sdid, slide: Slide, index){
         this.$store.commit('changeSdid', {sdid, slide, index})
+    }
+
+    moveSlideUpward(slide: Slide , index: number){
+        this.$store.commit('moveSlideUpward', {slide, index})
+    }
+
+    moveSlideDownward(slide: Slide , index: number){
+        this.$store.commit('moveSlideDownward', {slide, index})
     }
 
     async submit(){

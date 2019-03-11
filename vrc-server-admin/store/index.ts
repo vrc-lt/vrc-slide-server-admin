@@ -1,6 +1,7 @@
 import { RootState, Person, VRCSlideEvent } from "~/types";
 import { MutationTree, ActionTree, StoreOptions } from "vuex";
 import axios from "~/plugins/axios";
+import Vue from "vue";
 
 export const state = (): RootState => ({
   people: [],
@@ -40,6 +41,22 @@ export const mutations: MutationTree<RootState> = {
   },
   changeCount(state, {count, slide, index}) {
     slide.count = parseInt(count, 10)
+  },
+  moveSlideUpward (state, {slide, index} ){
+    if(index > 0){
+      const currentSlides = state.currentEvent.slides
+      const tmp = currentSlides[index]
+      Vue.set(state.currentEvent.slides, index, currentSlides[index - 1])
+      Vue.set(state.currentEvent.slides, index - 1, tmp)
+    }
+  },
+  moveSlideDownward(state, {slide, index} ){
+    if(index < state.currentEvent.slides.length - 1){
+    const currentSlides = state.currentEvent.slides
+    const tmp = currentSlides[index]
+    Vue.set(state.currentEvent.slides, index, currentSlides[index + 1])
+    Vue.set(state.currentEvent.slides, index + 1, tmp)
+    }
   }
 }
 
